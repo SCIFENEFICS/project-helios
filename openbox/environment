@@ -1,0 +1,7 @@
+# Project Helios Openbox environment
+
+export XDG_SESSION_TYPE=x11
+export XDG_CURRENT_DESKTOP=Openbox
+export XDG_SESSION_DESKTOP=openbox
+export QT_QPA_PLATFORM=xcb
+export GDK_BACKEND=x11

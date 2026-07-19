@@ -1,0 +1,23 @@
+# Build output
+output/
+
+# Logs
+*.log
+
+# Backup archives
+*.tar
+*.tar.gz
+*.zip
+
+# Temporary files
+*.tmp
+*.bak
+*~
+
+# Python
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store
+Thumbs.db

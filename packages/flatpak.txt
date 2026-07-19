@@ -1,0 +1,6 @@
+# Application ID | Display name
+
+com.moonlight_stream.Moonlight | Moonlight
+tv.plex.PlexHTPC | Plex HTPC
+io.freetubeapp.FreeTube | FreeTube
+com.spotify.Client | Spotify

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=MPV
+Exec=mpv --fs
+Terminal=false
+Categories=AudioVideo;Player;

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Project Helios
+Comment=Project Helios television interface
+Exec=openbox-session
+TryExec=openbox-session
+Type=Application
+DesktopNames=Openbox

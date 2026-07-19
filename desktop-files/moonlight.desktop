@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Moonlight
+Exec=flatpak run com.moonlight_stream.Moonlight
+Terminal=false
+Categories=Game;

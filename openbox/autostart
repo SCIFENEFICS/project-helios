@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# Project Helios Openbox startup
+
+# Disable screen blanking, screen savers and display power management.
+xset s off
+xset s noblank
+xset -dpms
+
+# Set the Helios background when it exists.
+BACKGROUND="$HOME/.local/share/helios/backgrounds/helios-background.png"
+
+if [[ -f "$BACKGROUND" ]]; then
+    feh --no-fehbg --bg-fill "$BACKGROUND" &
+fi
+
+# Start NetworkManager's tray process for maintenance access.
+nm-applet &
+
+# Give Openbox and desktop services time to initialise.
+sleep 2
+
+# Start Flex Launcher.
+# If it crashes, restart it after a short delay.
+while true; do
+    flex-launcher -c "$HOME/.config/flex-launcher/config.ini" >>"$HOME/flex-launcher.log" 2>&1
+    EXIT_CODE=$?
+
+    if [[ $EXIT_CODE -eq 0 ]]; then
+        break
+    fi
+
+    echo "Flex Launcher exited unexpectedly with code $EXIT_CODE."
+    echo "Restarting in 3 seconds..."
+    sleep 3
+done &

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=FreeTube
+Exec=flatpak run io.freetubeapp.FreeTube
+Terminal=false
+Categories=AudioVideo;

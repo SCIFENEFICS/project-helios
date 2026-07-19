@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Brave
+Exec=brave-browser --start-fullscreen
+Terminal=false
+Categories=Network;WebBrowser;

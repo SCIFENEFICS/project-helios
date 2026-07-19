@@ -1,0 +1,7 @@
+# Applications installed outside Debian or Flathub
+
+Brave Browser
+Source: Official Brave Debian repository
+
+Flex Launcher
+Source: Official Flex Launcher GitHub release

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Plex
+Exec=flatpak run tv.plex.PlexHTPC
+Terminal=false
+Categories=AudioVideo;

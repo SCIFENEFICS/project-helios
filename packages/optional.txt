@@ -1,0 +1,11 @@
+# Optional Project Helios packages
+
+# Bluetooth support
+bluez
+blueman
+
+# Maintenance terminal
+lxterminal
+
+# Archive support for PCManFM
+file-roller

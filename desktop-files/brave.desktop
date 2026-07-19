@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Brave
-Exec=brave-browser --start-fullscreen
+Icon=/usr/share/flex-launcher/assets/icons/brave.svg
+Exec=brave-browser --password-store=basic
 Terminal=false
 Categories=Network;WebBrowser;

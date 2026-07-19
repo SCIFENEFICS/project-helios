@@ -48,7 +48,7 @@
       <action name="Close"/>
     </keybind>
 
-    <keybind key="W-Escape">
+    <keybind key="Escape">
       <action name="Close"/>
     </keybind>
 

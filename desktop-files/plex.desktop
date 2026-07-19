@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Plex
+Icon=/usr/share/flex-launcher/assets/icons/plex.png
 Exec=flatpak run tv.plex.PlexHTPC
 Terminal=false
 Categories=AudioVideo;

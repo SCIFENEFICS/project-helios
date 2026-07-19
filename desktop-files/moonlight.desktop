@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Moonlight
+Icon=/usr/share/flex-launcher/assets/icons/moonlight.png
 Exec=flatpak run com.moonlight_stream.Moonlight
 Terminal=false
 Categories=Game;

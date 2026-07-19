@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=MPV
+Icon=/usr/share/icons/hicolor/scalable/apps/mpv.svg
 Exec=mpv --fs
 Terminal=false
 Categories=AudioVideo;Player;

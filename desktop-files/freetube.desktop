@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=FreeTube
+Icon=/usr/share/flex-launcher/assets/icons/youtube.svg
 Exec=flatpak run io.freetubeapp.FreeTube
 Terminal=false
 Categories=AudioVideo;

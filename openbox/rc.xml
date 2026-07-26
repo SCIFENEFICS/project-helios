@@ -50,7 +50,7 @@
 
     <keybind key="Escape">
       <action name="Execute">
-        <command>/home/helios/Projects/project-helios/scripts/escape-close.sh</command>
+        <command>/usr/local/bin/helios-escape-close</command>
       </action>
     </keybind>
 

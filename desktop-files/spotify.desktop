@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Spotify
+Name=Spotify TEST
 Icon=/usr/share/flex-launcher/assets/icons/spotify.svg
 Exec=flatpak run com.spotify.Client
 Terminal=false

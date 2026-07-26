@@ -8,6 +8,7 @@ xset s noblank
 xset -dpms
 
 # Set the Helios background when it exists.
+xsetroot -solid black
 BACKGROUND="$HOME/.local/share/helios/backgrounds/helios-background.png"
 
 if [[ -f "$BACKGROUND" ]]; then
@@ -18,7 +19,6 @@ fi
 nm-applet &
 
 # Give Openbox and desktop services time to initialise.
-sleep 2
 
 # Start Flex Launcher.
 # If it crashes, restart it after a short delay.

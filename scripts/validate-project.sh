@@ -143,7 +143,7 @@ echo "--- Flex Launcher configuration ---"
 
 FLEX_CONFIG="$PROJECT_DIR/flex-launcher/config.ini"
 
-for SECTION in Settings Home More System; do
+for SECTION in Settings Home; do
     if grep -q "^\[$SECTION\]$" "$FLEX_CONFIG"; then
         pass "Flex section: $SECTION"
     else

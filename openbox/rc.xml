@@ -49,7 +49,9 @@
     </keybind>
 
     <keybind key="Escape">
-      <action name="Close"/>
+      <action name="Execute">
+        <command>/home/helios/Projects/project-helios/scripts/escape-close.sh</command>
+      </action>
     </keybind>
 
     <keybind key="C-A-t">

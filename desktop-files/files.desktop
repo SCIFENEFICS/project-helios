@@ -2,6 +2,6 @@
 Type=Application
 Name=Files
 Icon=/usr/share/flex-launcher/assets/icons/files.svg
-Exec=pcmanfm /home/helios/Videos
+Exec=pcmanfm ~/Videos
 Terminal=false
 Categories=System;FileManager;

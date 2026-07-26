@@ -59,9 +59,10 @@
         <command>lxterminal</command>
       </action>
     </keybind>
+
     <keybind key="C-A-m">
       <action name="Execute">
-        <command>/home/helios/.local/bin/helios-maintenance</command>
+        <command>$HOME/.local/bin/helios-maintenance</command>
       </action>
     </keybind>
 

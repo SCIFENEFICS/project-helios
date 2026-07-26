@@ -21,7 +21,7 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-REAL_USER="${SUDO_USER:-}"
+REAL_USER="${SUDO_USER:-$(awk -F: '$3 >= 1000 && $3 < 65534 {print $1; exit}' /etc/passwd)}"
 
 if [[ -z "$REAL_USER" || "$REAL_USER" == "root" ]]; then
     echo "ERROR: This script must be run with sudo from a normal user account."

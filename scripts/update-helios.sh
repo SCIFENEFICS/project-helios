@@ -1,4 +1,4 @@
- #!/usr/bin/env bash
+#!/usr/bin/env bash
 
 set -Eeuo pipefail
 
@@ -27,22 +27,4 @@ pkill flex-launcher || true
 nohup flex-launcher >/dev/null 2>&1 &
 
 echo
-echo "Update complete."#!/usr/bin/env bash
-set -e
-
-PROJECT_DIR="$HOME/Projects/project-helios"
-
-cd "$PROJECT_DIR"
-
-echo "Updating Project Helios..."
-git pull --ff-only
-
-echo
-echo "Reinstalling launcher..."
-sudo ./scripts/configure-flex.sh
-
-echo
 echo "Update complete."
-echo "Restarting Flex Launcher..."
-pkill flex-launcher || true
-nohup flex-launcher >/dev/null 2>&1 &

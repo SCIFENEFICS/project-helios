@@ -88,8 +88,8 @@
     </application>
 
     <application class="Brave-browser">
-      <decor>no</decor>
-      <maximized>yes</maximized>
+      <decor>yes</decor>
+      <maximized>no</maximized>
       <focus>yes</focus>
     </application>
 

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=YouTube
+Icon=/usr/share/flex-launcher/assets/icons/youtube.svg
+Exec=brave-browser --password-store=basic --app=https://www.youtube.com
+Terminal=false
+Categories=Network;WebBrowser;

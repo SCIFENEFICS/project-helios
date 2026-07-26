@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Update Helios
+Icon=/usr/share/flex-launcher/assets/icons/settings.svg
+Exec=xterm -fullscreen -fa Monospace -fs 18 -e "$HOME/Projects/project-helios/scripts/update-helios.sh"
+Terminal=false
+Categories=System;

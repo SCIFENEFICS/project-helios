@@ -6,7 +6,9 @@ BUILD_DIR="$PROJECT_DIR/build"
 LIVE_BUILD_DIR="$BUILD_DIR/live-build"
 RUNTIME_DIR="$LIVE_BUILD_DIR/config/includes.chroot_after_packages/opt/helios"
 
-rm -rf "$BUILD_DIR"
+if [[ -d "$BUILD_DIR" ]]; then
+    sudo rm -rf "$BUILD_DIR"
+fi
 install -d -m 0755 "$BUILD_DIR"
 
 cp -a "$PROJECT_DIR/live-build" "$LIVE_BUILD_DIR"
@@ -15,3 +17,11 @@ cp -a "$PROJECT_DIR/live-build" "$LIVE_BUILD_DIR"
 
 echo "Build tree prepared at:"
 echo "$LIVE_BUILD_DIR"
+
+echo
+echo "Starting live-build..."
+
+cd "$LIVE_BUILD_DIR"
+
+sudo lb config
+sudo lb build

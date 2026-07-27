@@ -1,45 +1,55 @@
 # Project Helios
 
-Project Helios is a lightweight Linux appliance operating system designed for Intel NUC-class hardware. It provides a simple, console-like experience for media playback, game streaming, and everyday living room use while remaining easy to maintain and update.
+### A controller-first media operating system
 
-## Version 0.1.0-alpha
+Project Helios is an open-source, Debian-based media operating system designed to replace slow, cluttered and advertisement-filled smart TV software with a fast, private and controller-friendly experience.
 
-### Base System
+> [!WARNING]
+> **Project Helios is currently under active development and is not ready for general installation.**
+>
+> A public installation image has not yet been released, and the setup process is still being developed and tested. This repository is intended for development and evaluation only.
+>
+> Do not install Project Helios on your primary computer unless you are comfortable troubleshooting Linux.
 
-- Debian 13 Minimal
-- Xorg
-- Openbox
-- Flex Launcher
+## Current Status
 
-### Included Applications
+Project Helios is in pre-release development.
+- Development environment established
+- Custom Flex Launcher integration complete
+- Core application launcher working
+- ISO generation in progress
+- Installer and documentation coming soon
 
-- Moonlight
+## Why Helios?
+
+Modern smart TVs have become cluttered with advertisements, recommendations, mandatory accounts and closed ecosystems. Project Helios was created as an alternative.
+
+Helios provides a clean, controller-friendly interface that boots directly into your applications without unnecessary distractions, putting your content first.
+## Features
+- Controller-first interface
+- Debian Linux foundation
+- Fast boot experience
+- Privacy focused
+- No advertisements
+- No mandatory accounts
+- Lightweight design
+- One-click system updates
+- Open-source software
+
+## Included Applications
 - Plex HTPC
-- FreeTube
-- Brave
+- Moonlight
+- VacuumTube
 - Spotify
 - MPV
-- PCManFM
-- SMB support
+- Brave Browser
+- Files
+- Helios Update
 
-This initial release focuses on building a stable foundation, validating the installation process, and creating a reliable appliance-style user experience.
+## Flex Launcher
 
-## Design Goals
+Project Helios uses a customised version of Flex Launcher maintained here:
+https://github.com/SCIFENEFICS/flex-launcher
 
-- Fast boot
-- Simple appliance-style interface
-- Keyboard, remote and controller friendly
-- Reliable offline operation
-- Easy installation and updates
-
-## Roadmap
-
-Planned future development includes:
-
-- Helios branding and theming
-- Improved remote control support
-- Automatic updates
-- Recovery mode
-- Optional application selection during installation
-- Reproducible build system
-- Installer image generation
+Originally created by ComplexLogic:
+https://github.com/complexlogic/flex-launcher

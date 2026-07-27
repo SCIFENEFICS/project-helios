@@ -1,0 +1,4 @@
+[submodule "flex-launcher/flex-launcher"]
+	path = flex-launcher/flex-launcher
+	url = https://github.com/SCIFENEFICS/flex-launcher.git
+	branch = helios

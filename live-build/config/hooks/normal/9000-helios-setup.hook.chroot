@@ -1,0 +1,11 @@
+#!/bin/bash
+set -eux
+
+cd /opt/helios
+
+chmod +x scripts/*.sh
+chmod +x install.sh || true
+
+bash -x ./scripts/install-external.sh
+bash -x ./scripts/configure-system.sh
+bash -x ./scripts/configure-flex.sh

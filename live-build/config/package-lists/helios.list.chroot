@@ -1,0 +1,53 @@
+# Project Helios base Debian packages
+
+# Xorg and window management
+xorg
+xinit
+openbox
+lightdm
+feh
+x11-xserver-utils
+dbus-x11
+
+# Graphics and Intel hardware decoding
+intel-media-va-driver
+vainfo
+mesa-utils
+
+# Audio
+pipewire
+pipewire-audio
+wireplumber
+pavucontrol
+
+# Networking
+network-manager
+network-manager-gnome
+
+# File management and network shares
+pcmanfm
+gvfs
+gvfs-backends
+cifs-utils
+smbclient
+
+# Media playback
+mpv
+
+# Flatpak support
+flatpak
+
+# System utilities
+curl
+wget
+ca-certificates
+gnupg
+unzip
+zip
+sudo
+xdotool
+wmctrl
+
+zenity
+
+pciutils

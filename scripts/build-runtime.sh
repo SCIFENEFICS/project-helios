@@ -24,12 +24,14 @@ copy_dir desktop-files
 copy_dir flex-launcher
 copy_dir lightdm
 copy_dir openbox
+copy_dir plymouth
 copy_dir sessions
 
 install -d -m 0755 "$RUNTIME_DIR/scripts"
 
 for script in \
     app-selector.sh \
+    configure-boot.sh \
     configure-flex.sh \
     configure-system.sh \
     escape-close.sh \

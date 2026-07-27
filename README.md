@@ -56,7 +56,7 @@ Helios provides a clean, controller-friendly interface that boots directly into 
 ## Flex Launcher
 
 Project Helios uses a customised version of Flex Launcher maintained here:
-https://github.com/SCIFENEFICS/flex-launcher
+https://github.com/SCIFENEFICS/flex-launcher/tree/helios
 
 Originally created by ComplexLogic:
 https://github.com/complexlogic/flex-launcher

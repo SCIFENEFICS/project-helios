@@ -4,6 +4,13 @@
 
 Project Helios is an open-source, Debian-based media operating system designed to replace slow, cluttered and advertisement-filled smart TV software with a fast, private and controller-friendly experience.
 
+---
+
+<img width="1272" height="788" alt="image" src="https://github.com/user-attachments/assets/80b5f86e-72ad-4cdd-a9bb-adf43806c0df" />
+
+---
+
+
 > [!WARNING]
 > **Project Helios is currently under active development and is not ready for general installation.**
 >

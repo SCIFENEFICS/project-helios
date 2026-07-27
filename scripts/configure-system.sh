@@ -8,7 +8,7 @@ LOG_DIR="$PROJECT_DIR/output/logs"
 LOG_FILE="$LOG_DIR/configure-system.log"
 
 mkdir -p "$LOG_DIR"
-exec > >(tee -a "$LOG_FILE") 2>&1
+# exec > >(tee -a "$LOG_FILE") 2>&1
 
 echo "=========================================="
 echo " Project Helios: System Configuration"
@@ -45,9 +45,7 @@ else
         --shell /bin/bash \
         "$HELIOS_USER"
 
-    echo
-    echo "Set a password for the Helios user:"
-    passwd "$HELIOS_USER"
+    echo "helios:helios" | chpasswd
 fi
 
 HELIOS_HOME="$(getent passwd "$HELIOS_USER" | cut -d: -f6)"

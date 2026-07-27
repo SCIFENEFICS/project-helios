@@ -24,3 +24,7 @@ Thumbs.db
 # Virtual environments
 .venv/
 venv/
+# Generated build artifacts
+build/
+output/
+releases/

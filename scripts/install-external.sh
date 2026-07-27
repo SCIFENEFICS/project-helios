@@ -22,17 +22,10 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 REAL_USER="${SUDO_USER:-$(awk -F: '$3 >= 1000 && $3 < 65534 {print $1; exit}' /etc/passwd)}"
+REAL_HOME=""
 
-if [[ -z "$REAL_USER" || "$REAL_USER" == "root" ]]; then
-    echo "ERROR: This script must be run with sudo from a normal user account."
-    exit 1
-fi
-
-REAL_HOME="$(getent passwd "$REAL_USER" | cut -d: -f6)"
-
-if [[ -z "$REAL_HOME" || ! -d "$REAL_HOME" ]]; then
-    echo "ERROR: Could not determine the home directory for $REAL_USER."
-    exit 1
+if [[ -n "$REAL_USER" && "$REAL_USER" != "root" ]]; then
+    REAL_HOME="$(getent passwd "$REAL_USER" | cut -d: -f6)"
 fi
 
 echo "Installing Brave Browser..."
@@ -98,6 +91,7 @@ curl -fL "$FLEX_URL" -o "$TEMP_DEB"
 apt-get install -y "$TEMP_DEB"
 
 echo
+if [[ -n "$REAL_USER" && -n "$REAL_HOME" && -d "$REAL_HOME" ]]; then
 echo "Preparing the user Flex Launcher configuration..."
 
 install -d -o "$REAL_USER" -g "$REAL_USER" \
@@ -124,6 +118,13 @@ else
 fi
 
 echo
+else
+    echo
+    echo "No normal user exists yet."
+    echo "Skipping the optional user Flex Launcher configuration."
+    echo "The Helios system configuration will create it later."
+fi
+
 echo "=========================================="
 echo " External application installation complete"
 echo "=========================================="

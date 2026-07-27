@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Helios
+Description=Project Helios boot theme
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/helios
+ScriptFile=/usr/share/plymouth/themes/helios/helios.script

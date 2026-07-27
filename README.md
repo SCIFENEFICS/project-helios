@@ -2,7 +2,7 @@
 
 ### A controller-first media operating system
 
-Project Helios is an open-source, Debian-based media operating system designed to replace slow, cluttered and advertisement-filled smart TV software with a fast, private and controller-friendly experience.
+Project Helios is an open-source, Debian-based media operating system designed to replace slow, cluttered and advertisement-filled smart TV software with a fast, private and controller-friendly experience. It is built for speed, stability and simplicity.
 
 ---
 
@@ -44,14 +44,14 @@ Helios provides a clean, controller-friendly interface that boots directly into 
 - Open-source software
 
 ## Included Applications
-- Plex HTPC
-- Moonlight
-- VacuumTube
-- Spotify
-- MPV
-- Brave Browser
-- Files
-- Helios Update
+- Plex HTPC - For movies and Shows
+- Moonlight - For streaming Steam games to TV
+- VacuumTube - Ad free Youtube (Changed name to Youtube)
+- Spotify - Music
+- MPV - PLay movie files from Files Viewer
+- Brave Browser - Web Browser with adblocker
+- Files - Explore files
+- Helios Update - Update button
 
 ## Flex Launcher
 

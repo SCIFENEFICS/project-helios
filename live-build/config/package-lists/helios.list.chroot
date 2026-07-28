@@ -21,6 +21,7 @@ wireplumber
 pavucontrol
 
 # Networking
+openssh-server
 network-manager
 network-manager-gnome
 

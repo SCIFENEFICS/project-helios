@@ -9,7 +9,8 @@ RELEASES_DIR="$PROJECT_DIR/releases"
 VERSION_FILE="$PROJECT_DIR/config/version"
 
 VERSION="$(<"$VERSION_FILE")"
-RELEASE_ISO="$RELEASES_DIR/Project-Helios-v${VERSION}.iso"
+BUILD_DATE=$(date +%Y%m%d-%H%M%S)
+RELEASE_ISO="$RELEASES_DIR/Project-Helios-v${VERSION}-${BUILD_DATE}.iso"
 
 if [[ -d "$BUILD_DIR" ]]; then
     sudo rm -rf "$BUILD_DIR"
@@ -38,11 +39,24 @@ if [[ ! -f "$BUILT_ISO" ]]; then
     exit 1
 fi
 
+"$PROJECT_DIR/scripts/validate-iso.sh" "$BUILT_ISO"
+
 install -d -m 0755 "$RELEASES_DIR"
 cp "$BUILT_ISO" "$RELEASE_ISO"
 sha256sum "$RELEASE_ISO" > "${RELEASE_ISO}.sha256"
+
+HOST_USER="pyrus"
+HOST_IP="192.168.10.216"
+HOST_RELEASES_DIR="/home/pyrus/vault/projects/Project Helios/releases"
+
+echo
+echo "Copying release to Pop!_OS host..."
+scp "$RELEASE_ISO" "${RELEASE_ISO}.sha256"     "$HOST_USER@$HOST_IP:$HOST_RELEASES_DIR/"
 
 echo
 echo "Release created:"
 echo "$RELEASE_ISO"
 echo "${RELEASE_ISO}.sha256"
+echo
+echo "Copied to Pop!_OS host:"
+echo "$HOST_RELEASES_DIR/"

@@ -10,3 +10,4 @@ bash -x ./scripts/install-external.sh
 bash -x ./scripts/configure-system.sh
 bash -x ./scripts/configure-boot.sh
 bash -x ./scripts/configure-flex.sh
+systemctl enable ssh.service

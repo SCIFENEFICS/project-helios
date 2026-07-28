@@ -44,86 +44,8 @@ apt-get update
 DEBIAN_FRONTEND=noninteractive apt-get install -y brave-browser
 
 echo
-echo "Installing Flex Launcher..."
-
-ARCH="$(dpkg --print-architecture)"
-
-case "$ARCH" in
-    amd64)
-        FLEX_ARCH_PATTERN='amd64'
-        ;;
-    arm64)
-        FLEX_ARCH_PATTERN='arm64'
-        ;;
-    *)
-        echo "ERROR: Unsupported architecture for automatic Flex Launcher installation: $ARCH"
-        exit 1
-        ;;
-esac
-
-RELEASE_JSON="$(curl -fsSL \
-    https://api.github.com/repos/complexlogic/flex-launcher/releases/latest)"
-
-FLEX_URL="$(printf '%s' "$RELEASE_JSON" |
-    grep -oE '"browser_download_url":[[:space:]]*"[^"]+"' |
-    cut -d'"' -f4 |
-    grep -Ei "${FLEX_ARCH_PATTERN}.*\.deb$|\.deb$" |
-    head -n 1)"
-
-if [[ -z "$FLEX_URL" ]]; then
-    echo "ERROR: Could not find a Flex Launcher Debian package."
-    exit 1
-fi
-
-TEMP_DEB="$(mktemp --suffix=.deb)"
-
-cleanup() {
-    rm -f "$TEMP_DEB"
-}
-
-trap cleanup EXIT
-
-echo "Downloading:"
-echo "$FLEX_URL"
-
-curl -fL "$FLEX_URL" -o "$TEMP_DEB"
-
-apt-get install -y "$TEMP_DEB"
-
-echo
-if [[ -n "$REAL_USER" && -n "$REAL_HOME" && -d "$REAL_HOME" ]]; then
-echo "Preparing the user Flex Launcher configuration..."
-
-install -d -o "$REAL_USER" -g "$REAL_USER" \
-    "$REAL_HOME/.config"
-
-if [[ -d /usr/share/flex-launcher ]]; then
-    rm -rf "$REAL_HOME/.config/flex-launcher"
-
-    cp -a \
-        /usr/share/flex-launcher \
-        "$REAL_HOME/.config/flex-launcher"
-
-    chown -R "$REAL_USER:$REAL_USER" \
-        "$REAL_HOME/.config/flex-launcher"
-
-    if [[ -f "$REAL_HOME/.config/flex-launcher/config.ini" ]]; then
-        sed -i \
-            "s|/usr/share/flex-launcher|$REAL_HOME/.config/flex-launcher|g" \
-            "$REAL_HOME/.config/flex-launcher/config.ini"
-    fi
-else
-    echo "WARNING: /usr/share/flex-launcher was not found."
-    echo "The launcher installed, but its default assets were not copied."
-fi
-
-echo
-else
-    echo
-    echo "No normal user exists yet."
-    echo "Skipping the optional user Flex Launcher configuration."
-    echo "The Helios system configuration will create it later."
-fi
+echo "Flex Launcher is supplied through live-build/config/packages.chroot."
+echo "Skipping external Flex Launcher download."
 
 echo "=========================================="
 echo " External application installation complete"

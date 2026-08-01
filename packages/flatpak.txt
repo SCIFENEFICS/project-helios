@@ -2,5 +2,5 @@
 
 com.moonlight_stream.Moonlight | Moonlight
 tv.plex.PlexHTPC | Plex HTPC
-io.freetubeapp.FreeTube | FreeTube
+rocks.shy.VacuumTube | VacuumTube
 com.spotify.Client | Spotify

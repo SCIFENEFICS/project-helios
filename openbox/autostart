@@ -7,13 +7,6 @@ xset s off
 xset s noblank
 xset -dpms
 
-# Set the Helios background when it exists.
-xsetroot -solid black
-BACKGROUND="$HOME/.local/share/helios/backgrounds/helios-background.png"
-
-if [ -f "$BACKGROUND" ]; then
-    feh --no-fehbg --bg-fill "$BACKGROUND" &
-fi
 
 # Start NetworkManager's tray process for maintenance access.
 nm-applet &

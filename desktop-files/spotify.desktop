@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Spotify
-Icon=/usr/share/flex-launcher/assets/icons/spotify.svg
+Icon=/usr/share/helios/icons/spotify.svg
 Exec=flatpak run com.spotify.Client
 Terminal=false
 Categories=Audio;Music;

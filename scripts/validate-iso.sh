@@ -3,7 +3,7 @@ set -Eeuo pipefail
 
 ISO="${1:?Usage: validate-iso.sh /path/to/image.iso}"
 WORK="$(mktemp -d "$PWD/.validate-iso.XXXXXX")"
-trap 'sudo rm -rf "$WORK"' EXIT
+trap 'sudo mountpoint -q "$WORK/root" && sudo umount "$WORK/root"; sudo rm -rf "$WORK"' EXIT
 
 command -v xorriso >/dev/null || {
     echo "FAIL: xorriso is not installed"
@@ -17,17 +17,14 @@ command -v unsquashfs >/dev/null || {
 
 mkdir -p "$WORK/root"
 
-echo "Extracting finished ISO filesystem..."
+echo "Mounting finished ISO filesystem..."
 
 xorriso -osirrox on \
     -indev "$ISO" \
     -extract /live/filesystem.squashfs "$WORK/filesystem.squashfs" \
     >/dev/null 2>&1
 
-sudo unsquashfs -f \
-    -d "$WORK/root" \
-    "$WORK/filesystem.squashfs" \
-    >/dev/null
+sudo mount -o loop,ro "$WORK/filesystem.squashfs" "$WORK/root"
 
 ROOT="$WORK/root"
 FAILED=0

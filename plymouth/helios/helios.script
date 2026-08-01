@@ -5,35 +5,5 @@ title_image = Image.Text("PROJECT HELIOS", 1, 1, 1);
 title_sprite = Sprite(title_image);
 
 title_sprite.SetX(Window.GetWidth() / 2 - title_image.GetWidth() / 2);
-title_sprite.SetY(Window.GetHeight() / 2 - 60);
+title_sprite.SetY(Window.GetHeight() / 2 - title_image.GetHeight() / 2);
 title_sprite.SetZ(100);
-
-bar_width = 300;
-bar_height = 6;
-bar_x = Window.GetWidth() / 2 - bar_width / 2;
-bar_y = Window.GetHeight() / 2 + 20;
-
-bar_background_image = Image.Solid(bar_width, bar_height, 0.18, 0.18, 0.18);
-bar_background_sprite = Sprite(bar_background_image);
-bar_background_sprite.SetX(bar_x);
-bar_background_sprite.SetY(bar_y);
-bar_background_sprite.SetZ(90);
-
-progress = 1;
-bar_fill_sprite = Sprite();
-
-fun refresh_callback()
-{
-    progress = progress + 3;
-
-    if (progress > bar_width)
-        progress = 1;
-
-    bar_fill_image = Image.Solid(progress, bar_height, 0.2, 0.6, 1.0);
-    bar_fill_sprite.SetImage(bar_fill_image);
-    bar_fill_sprite.SetX(bar_x);
-    bar_fill_sprite.SetY(bar_y);
-    bar_fill_sprite.SetZ(100);
-}
-
-Plymouth.SetRefreshFunction(refresh_callback);

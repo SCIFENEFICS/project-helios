@@ -1,30 +1,47 @@
 #!/usr/bin/env bash
-
 set -Eeuo pipefail
 
+REPO_URL="https://github.com/SCIFENEFICS/project-helios.git"
 PROJECT_DIR="$HOME/Projects/project-helios"
-
-cd "$PROJECT_DIR"
 
 echo "========================================="
 echo " Updating Project Helios"
 echo "========================================="
 echo
 
-git pull --ff-only
+mkdir -p "$HOME/Projects"
+
+if [[ -d "$PROJECT_DIR/.git" ]]; then
+    echo "Downloading the latest Helios updates..."
+    git -C "$PROJECT_DIR" pull --ff-only
+else
+    if [[ -e "$PROJECT_DIR" ]]; then
+        echo "ERROR: $PROJECT_DIR exists but is not a Git repository."
+        echo
+        read -rp "Press Enter to close..."
+        exit 1
+    fi
+
+    echo "Downloading Project Helios from GitHub..."
+    git clone "$REPO_URL" "$PROJECT_DIR"
+fi
 
 echo
-echo "Running Project Helios installer..."
-sudo ./install.sh
+echo "Installing the latest Helios version..."
+sudo "$PROJECT_DIR/install.sh"
 
 echo
-echo "Updating Flatpak applications..."
-./scripts/install-apps.sh
+echo "Updating Helios Flatpak applications..."
+sudo flatpak update --system --noninteractive
 
 echo
 echo "Restarting Flex Launcher..."
-pkill flex-launcher || true
+pkill -x flex-launcher || true
 nohup flex-launcher >/dev/null 2>&1 &
 
 echo
-echo "Update complete."
+echo "========================================="
+echo " Helios update complete"
+echo "========================================="
+echo
+read -rp "Press Enter to close..."

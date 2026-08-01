@@ -20,6 +20,7 @@ copy_dir() {
 
 copy_dir assets
 copy_dir config
+copy_dir packages
 copy_dir desktop-files
 copy_dir flex-launcher
 copy_dir lightdm
@@ -35,7 +36,9 @@ for script in \
     configure-flex.sh \
     configure-system.sh \
     escape-close.sh \
-    install-external.sh
+    install-external.sh \
+    install-flatpaks-system.sh \
+    update-helios.sh
 do
     install -m 0755 \
         "$PROJECT_DIR/scripts/$script" \

@@ -161,6 +161,15 @@ if compgen -G "$PROJECT_DIR/assets/icons/*" >/dev/null; then
         "$HELIOS_HOME/.local/share/helios/icons/"
 fi
 
+echo
+echo "Installing Project Helios branding assets..."
+
+install -d -m 0755     /usr/share/helios/backgrounds     /usr/share/helios/icons
+
+install -m 0644     "$PROJECT_DIR/assets/Helios/helios-background.jpg"     /usr/share/helios/backgrounds/helios-background.jpg
+
+cp -a "$PROJECT_DIR/assets/icons/." /usr/share/helios/icons/
+
 chown -R "$HELIOS_USER:$HELIOS_USER" \
     "$HELIOS_HOME/.config" \
     "$HELIOS_HOME/.local" \

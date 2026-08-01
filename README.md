@@ -1,62 +1,140 @@
 # Project Helios
 
-### A controller-first media operating system
+### A controller-first media operating system for TVs
 
-Project Helios is an open-source, Debian-based media operating system designed to replace slow, cluttered and advertisement-filled smart TV software with a fast, private and controller-friendly experience. It is built for speed, stability and simplicity.
-
----
-
-<img width="1272" height="788" alt="image" src="https://github.com/user-attachments/assets/80b5f86e-72ad-4cdd-a9bb-adf43806c0df" />
+Project Helios is an open-source, Debian-based operating system designed specifically for televisions. It replaces slow, cluttered and advertisement-filled smart TV software with a fast, private and controller-friendly experience that boots directly into your applications.
 
 ---
 
+<img width="1272" height="788" alt="Project Helios Launcher" src="https://github.com/user-attachments/assets/80b5f86e-72ad-4cdd-a9bb-adf43806c0df" />
+
+---
 
 > [!WARNING]
-> **Project Helios is currently under active development and is not ready for general installation.**
+> **Project Helios is currently under active development and is not yet ready for general installation.**
 >
-> A public installation image has not yet been released, and the setup process is still being developed and tested. This repository is intended for development and evaluation only.
->
-> Do not install Project Helios on your primary computer unless you are comfortable troubleshooting Linux.
+> Installation images are still being developed and tested. This repository is intended for development and evaluation only.
 
 ## Current Status
 
-Project Helios is in pre-release development.
-- Development environment established
-- Custom Flex Launcher integration complete
-- Core application launcher working
-- ISO generation in progress
-- Installer and documentation coming soon
+Project Helios is progressing toward its first public release.
 
-## Why Helios?
+### Completed
 
-Modern smart TVs have become cluttered with advertisements, recommendations, mandatory accounts and closed ecosystems. Project Helios was created as an alternative.
+- Debian 13 operating system
+- Bootable installation ISO
+- Automatic login into the Helios interface
+- Lightweight Openbox desktop session
+- Custom Flex Launcher integration
+- Two-row launcher interface
+- Controller support and custom mappings
+- Native launcher background support
+- Custom Project Helios boot screen
+- Hidden GRUB boot menu
+- One-click update system
+- Flatpak application support
 
-Helios provides a clean, controller-friendly interface that boots directly into your applications without unnecessary distractions, putting your content first.
+### In Progress
+
+- Boot time optimisation
+- Controller compatibility testing
+- Installer improvements
+- Settings interface
+- Hardware testing on the MSI Cubi N 8GL
+
 ## Features
-- Controller-first interface
-- Debian Linux foundation
-- Fast boot experience
+
+- Controller-first navigation
+- Designed specifically for TVs
+- Fast startup
+- Lightweight design
 - Privacy focused
 - No advertisements
 - No mandatory accounts
-- Lightweight design
-- One-click system updates
-- Open-source software
+- Flatpak application support
+- One-click updates
+- Replaceable backgrounds and icons
 
 ## Included Applications
-- Plex HTPC - For movies and Shows
-- Moonlight - For streaming Steam games to TV
-- VacuumTube - Ad free Youtube (Changed name to Youtube)
-- Spotify - Music
-- MPV - PLay movie files from Files Viewer
-- Brave Browser - Web Browser with adblocker
-- Files - Explore files
-- Helios Update - Update button
+
+- Plex HTPC
+- Moonlight
+- YouTube (VacuumTube)
+- Spotify
+- MPV
+- Brave Browser
+- Files
+- Helios Update
+
+## System Architecture
+
+Project Helios uses a lightweight graphical stack.
+
+```text
+Debian Linux
+    ↓
+LightDM
+    ↓
+Openbox
+    ↓
+Flex Launcher
+    ↓
+Media Applications
+```
+
+Openbox provides a lightweight desktop session while Flex Launcher acts as the television interface.
 
 ## Flex Launcher
 
 Project Helios uses a customised version of Flex Launcher maintained here:
+
 https://github.com/SCIFENEFICS/flex-launcher/tree/helios
 
 Originally created by ComplexLogic:
+
 https://github.com/complexlogic/flex-launcher
+
+Helios extends Flex Launcher with:
+
+- Two-row layout
+- Controller improvements
+- Native background rendering
+- Helios branding
+- Launcher customisation
+- Integrated system actions
+
+## Development Workflow
+
+Development takes place inside the dedicated **Helios-Dev VM**.
+
+```text
+Helios-Dev VM
+      ↓
+Build ISO
+      ↓
+Virtual Machine testing
+      ↓
+NUC testing
+      ↓
+GitHub
+```
+
+## Credits
+
+Project Helios is built using open-source software, including:
+
+- Debian
+- Flex Launcher
+- Openbox
+- LightDM
+- Plymouth
+- Flatpak
+- SDL2
+- MPV
+- Moonlight
+- Brave
+- VacuumTube
+
+## License
+
+Project Helios is open-source software. Individual applications and upstream projects remain subject to their respective licenses.

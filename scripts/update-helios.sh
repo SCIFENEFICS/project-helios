@@ -35,9 +35,8 @@ echo "Updating Helios Flatpak applications..."
 sudo flatpak update --system --noninteractive
 
 echo
-echo "Restarting Flex Launcher..."
-pkill -x flex-launcher || true
-nohup flex-launcher >/dev/null 2>&1 &
+echo "The update has been installed."
+echo "Close this window to return to Project Helios."
 
 echo
 echo "========================================="

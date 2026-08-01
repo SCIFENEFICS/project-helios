@@ -16,7 +16,7 @@ nm-applet &
 # Start Flex Launcher.
 # If it crashes, restart it after a short delay.
 while true; do
-    /usr/bin/flex-launcher -c "$HOME/.config/flex-launcher/config.ini" >>"$HOME/flex-launcher.log" 2>&1
+    /usr/local/bin/flex-launcher -c "$HOME/.config/flex-launcher/config.ini" >>"$HOME/flex-launcher.log" 2>&1
     EXIT_CODE=$?
 
     if [ "$EXIT_CODE" -eq 0 ]; then

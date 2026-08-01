@@ -15,7 +15,24 @@ copy_dir() {
         exit 1
     fi
 
-    cp -a "$PROJECT_DIR/$source" "$RUNTIME_DIR/"
+    rsync -a \
+        --exclude='.git/' \
+        --exclude='.github/' \
+        --exclude='build/' \
+        --exclude='CMakeFiles/' \
+        --exclude='_CPack_Packages/' \
+        --exclude='*.o' \
+        --exclude='*.a' \
+        --exclude='*.iso' \
+        --exclude='*.img' \
+        --exclude='*.qcow2' \
+        --exclude='*.vdi' \
+        --exclude='*.vmdk' \
+        --exclude='*.tar' \
+        --exclude='*.tar.gz' \
+        --exclude='*.zip' \
+        "$PROJECT_DIR/$source/" \
+        "$RUNTIME_DIR/$source/"
 }
 
 copy_dir assets

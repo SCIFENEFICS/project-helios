@@ -62,7 +62,7 @@ check_package lightdm
 check_package openbox
 check_package network-manager
 
-check_file /usr/bin/flex-launcher
+check_file /usr/local/bin/flex-launcher
 check_file /home/helios/.config/openbox/autostart
 check_file /home/helios/.config/flex-launcher/config.ini
 check_file /etc/lightdm/lightdm.conf.d/50-helios-autologin.conf

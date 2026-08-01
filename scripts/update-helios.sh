@@ -31,6 +31,12 @@ echo "Installing the latest Helios version..."
 sudo "$PROJECT_DIR/install.sh"
 
 echo
+echo "Installing or updating Spotify..."
+sudo flatpak remote-add     --system     --if-not-exists     flathub     https://dl.flathub.org/repo/flathub.flatpakrepo
+
+sudo flatpak install     --system     --noninteractive     --or-update     flathub     com.spotify.Client
+
+echo
 echo "Updating Helios Flatpak applications..."
 sudo flatpak update --system --noninteractive
 

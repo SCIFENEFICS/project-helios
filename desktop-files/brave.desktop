@@ -2,6 +2,6 @@
 Type=Application
 Name=Brave
 Icon=/usr/share/helios/icons/brave.svg
-Exec=/usr/bin/brave-browser-stable --password-store=basic
+Exec=/usr/local/bin/helios-launch-brave
 Terminal=false
 Categories=Network;WebBrowser;

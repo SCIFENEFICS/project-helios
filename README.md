@@ -6,7 +6,8 @@ Project Helios is an open-source, Debian-based operating system designed specifi
 
 ---
 
-<img width="1272" height="788" alt="Project Helios Launcher" src="https://github.com/user-attachments/assets/80b5f86e-72ad-4cdd-a9bb-adf43806c0df" />
+<img width="1296" height="816" alt="image" src="https://github.com/user-attachments/assets/4208f4e2-2eaa-491e-80a2-c65923d1d927" />
+
 
 ---
 

@@ -89,6 +89,8 @@ install -d -o "$HELIOS_USER" -g "$HELIOS_USER" \
 echo
 echo "Installing Helios maintenance tools..."
 install -m 0755 "$PROJECT_DIR/scripts/escape-close.sh" /usr/local/bin/helios-escape-close
+install -m 0755 "$PROJECT_DIR/scripts/update-helios.sh" /usr/local/bin/helios-update
+install -m 0755 "$PROJECT_DIR/scripts/launch-brave.sh" /usr/local/bin/helios-launch-brave
 
 install -d -o "$HELIOS_USER" -g "$HELIOS_USER"     "$HELIOS_HOME/.local/bin"
 

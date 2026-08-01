@@ -55,6 +55,7 @@ for script in \
     escape-close.sh \
     install-external.sh \
     install-flatpaks-system.sh \
+    launch-brave.sh \
     update-helios.sh
 do
     install -m 0755 \

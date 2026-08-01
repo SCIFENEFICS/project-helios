@@ -38,6 +38,26 @@ echo "Rebuilding initramfs..."
 
 update-initramfs -u -k all
 
+echo "Hiding the GRUB menu and boot messages..."
+
+if [[ -f /etc/grub.d/10_linux ]]; then
+    sed -i 's/^quiet_boot="0"$/quiet_boot="1"/' /etc/grub.d/10_linux
+fi
+
+install -d -m 0755 /etc/default/grub.d
+
+cat > /etc/default/grub.d/99-helios.cfg <<'EOF'
+GRUB_DEFAULT=0
+GRUB_TIMEOUT_STYLE=hidden
+GRUB_TIMEOUT=0
+GRUB_RECORDFAIL_TIMEOUT=0
+GRUB_DISABLE_OS_PROBER=true
+GRUB_DISABLE_RECOVERY=true
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash loglevel=0 systemd.show_status=false rd.systemd.show_status=false rd.udev.log_level=0 udev.log_level=0 vt.global_cursor_default=0 console=tty3"
+EOF
+
+update-grub
+
 echo
 echo "=========================================="
 echo " Boot configuration completed"

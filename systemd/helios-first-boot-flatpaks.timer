@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Project Helios first-boot Flatpak setup after startup
+ConditionPathExists=!/var/lib/helios/first-boot-flatpaks-complete
+
+[Timer]
+OnBootSec=15s
+Unit=helios-first-boot-flatpaks.service
+
+[Install]
+WantedBy=timers.target

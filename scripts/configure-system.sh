@@ -91,6 +91,14 @@ echo "Installing Helios maintenance tools..."
 install -m 0755 "$PROJECT_DIR/scripts/escape-close.sh" /usr/local/bin/helios-escape-close
 install -m 0755 "$PROJECT_DIR/scripts/update-helios.sh" /usr/local/bin/helios-update
 install -m 0755 "$PROJECT_DIR/scripts/launch-brave.sh" /usr/local/bin/helios-launch-brave
+install -m 0755 "$PROJECT_DIR/scripts/first-boot-flatpaks.sh" /usr/local/bin/helios-first-boot-flatpaks
+
+install -d -m 0755 /etc/systemd/system
+install -m 0644     "$PROJECT_DIR/systemd/helios-first-boot-flatpaks.service"     /etc/systemd/system/helios-first-boot-flatpaks.service
+
+install -m 0644     "$PROJECT_DIR/systemd/helios-first-boot-flatpaks.timer"     /etc/systemd/system/helios-first-boot-flatpaks.timer
+
+systemctl enable helios-first-boot-flatpaks.timer
 
 install -d -o "$HELIOS_USER" -g "$HELIOS_USER"     "$HELIOS_HOME/.local/bin"
 

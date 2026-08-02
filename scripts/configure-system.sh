@@ -98,6 +98,11 @@ install -m 0644     "$PROJECT_DIR/systemd/helios-first-boot-flatpaks.service"   
 
 install -m 0644     "$PROJECT_DIR/systemd/helios-first-boot-flatpaks.timer"     /etc/systemd/system/helios-first-boot-flatpaks.timer
 
+install -m 0644     "$PROJECT_DIR/systemd/helios-update.service"     /etc/systemd/system/helios-update.service
+
+install -d -m 0755 /etc/sudoers.d
+install -m 0440     "$PROJECT_DIR/sudoers/helios-update"     /etc/sudoers.d/helios-update
+
 systemctl enable helios-first-boot-flatpaks.timer
 
 install -d -o "$HELIOS_USER" -g "$HELIOS_USER"     "$HELIOS_HOME/.local/bin"

@@ -45,6 +45,7 @@ copy_dir openbox
 copy_dir plymouth
 copy_dir sessions
 copy_dir systemd
+copy_dir sudoers
 
 install -d -m 0755 "$RUNTIME_DIR/scripts"
 
@@ -55,6 +56,7 @@ for script in \
     configure-system.sh \
     escape-close.sh \
     first-boot-flatpaks.sh \
+    helios-update-service.sh \
     install-external.sh \
     install-flatpaks-system.sh \
     launch-brave.sh \

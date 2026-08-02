@@ -24,6 +24,7 @@ Project Helios is progressing toward its first public release.
 
 - Debian 13 operating system
 - Bootable installation ISO
+- Simplified automatic Helios installer
 - Automatic login into the Helios interface
 - Lightweight Openbox desktop session
 - Custom Flex Launcher integration
@@ -39,7 +40,7 @@ Project Helios is progressing toward its first public release.
 
 - Boot time optimisation
 - Controller compatibility testing
-- Installer improvements
+- Installer menu and hardware testing
 - Settings interface
 - Hardware testing on the MSI Cubi N 8GL
 
@@ -53,7 +54,7 @@ Project Helios is progressing toward its first public release.
 - No advertisements
 - No mandatory accounts
 - Flatpak application support
-- One-click updates
+- Integrated update framework
 - Replaceable backgrounds and icons
 
 ## Included Applications
@@ -66,6 +67,24 @@ Project Helios is progressing toward its first public release.
 - Brave Browser
 - Files
 - Helios Update
+
+> [!NOTE]
+> **Spotify requires an internet connection during first boot.**
+>
+> Spotify is installed automatically after Helios starts for the first time. If Helios is not connected to the internet, Spotify will be installed automatically the next time it boots with an internet connection.
+
+## First Boot
+
+When Helios starts for the first time it automatically performs a small amount of setup in the background.
+
+This currently includes:
+
+- Installing Spotify
+- Updating installed Flatpak applications
+
+This process starts approximately 15 seconds after boot and only runs once.
+
+A working internet connection is required for this process.
 
 ## System Architecture
 

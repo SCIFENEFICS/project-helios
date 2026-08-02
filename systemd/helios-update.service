@@ -1,0 +1,8 @@
+[Unit]
+Description=Project Helios system update
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/helios-update-service

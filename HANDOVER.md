@@ -140,8 +140,502 @@ After Travis confirms a tested ISO works:
 
 # 4. Directory Structure
 
-(TODO - complete in next update.)
+## Main Repository
+
+Canonical development repository:
+
+`~/Projects/project-helios`
+
+Active development occurs only inside the Helios-Dev VM.
+
+---
+
+## Important Main Repository Locations
+
+### `scripts/`
+
+Contains Helios build, installation and maintenance scripts.
+
+Important files:
+
+`build-runtime.sh`
+- Creates the runtime filesystem copied into the ISO.
+- Deliberately excludes `.git/` and `.github/`.
+- The installed `/opt/helios` system is runtime-only.
+
+`configure-system.sh`
+- Configures the installed Helios operating system.
+- Installs services, scripts, users and system configuration.
+
+`configure-flex.sh`
+- Installs and configures Flex Launcher.
+
+`update-helios.sh`
+- User-facing Update Helios launcher command.
+
+`helios-update-service.sh`
+- Privileged update service backend.
+
+`first-boot-flatpaks.sh`
+- First boot Flatpak setup.
+
+---
+
+## `live-build/`
+
+Debian ISO build configuration.
+
+Important locations:
+
+`live-build/config/bootloaders/`
+- Syslinux and GRUB installer menus.
+
+`live-build/config/preseed/`
+- Debian installer automation settings.
+
+`live-build/config/hooks/`
+- Build-time system modifications.
+
+---
+
+## `desktop-files/`
+
+Contains application launcher `.desktop` files.
+
+Important files:
+
+- `brave.desktop`
+- `spotify.desktop`
+- `update-helios.desktop`
+- `moonlight.desktop`
+- `plex.desktop`
+
+When an application fails to launch:
+Check the desktop file first.
+
+---
+
+## `systemd/`
+
+Helios system services and timers.
+
+Important files:
+
+- `helios-first-boot-flatpaks.service`
+- `helios-first-boot-flatpaks.timer`
+- `helios-update.service`
+
+---
+
+## `sudoers/`
+
+Restricted privilege rules.
+
+Important:
+
+Only allow required appliance actions.
+
+Do not give Helios unrestricted sudo access.
+
+---
+
+# Flex Launcher Submodule
+
+Location:
+
+`flex-launcher/flex-launcher`
+
+Project Helios maintains a customised Flex Launcher fork.
+
+Important source locations:
+
+## `src/launcher.c`
+
+Main launcher rendering and interface loop.
+
+## `src/launcher.h`
+
+Global structures including:
+
+- Config
+- State
+- Menu
+- Entry
+
+## `src/platform/unix.c`
+
+Linux application launching.
+
+Important:
+
+Desktop applications are launched using the desktop file `Exec=` command.
+
+Do not replace with alternative launch methods without testing all applications.
+
+## `src/util.c`
+
+Configuration parsing.
+
+## `build/`
+
+Generated build files.
+
+Important:
+
+`build/launcher_config.h`
+
+Generated configuration definitions.
+
+---
+
+# Installed Helios Runtime
+
+Location:
+
+`/opt/helios`
+
+Important:
+
+This is NOT the development repository.
+
+It does not contain Git history because `.git/` is intentionally excluded during runtime creation.
+
+Future update systems must use a release/runtime update mechanism.
+
+---
+
+# Common Investigation Locations
+
+## Application launch problems
+
+Check:
+
+1. `desktop-files/*.desktop`
+2. `scripts/`
+3. `flex-launcher/flex-launcher/src/platform/unix.c`
+
+## ISO missing files
+
+Check:
+
+1. `scripts/build-runtime.sh`
+2. live-build configuration
+
+## Installer problems
+
+Check:
+
+1. `live-build/config/bootloaders/`
+2. `live-build/config/preseed/`
+
 
 # 5. Build Process
 
-(TODO - complete in next update.)
+## Build Environment
+
+All ISO builds happen inside:
+
+`Helios-Dev VM`
+
+Repository:
+
+`~/Projects/project-helios`
+
+Do not build from the Pop!_OS backup copy.
+
+---
+
+## Main Build Command
+
+The normal ISO build command is:
+
+`./build.sh`
+
+The build process:
+
+1. Prepares the live-build directory.
+2. Creates the Helios runtime.
+3. Applies Debian live-build configuration.
+4. Builds the installer ISO.
+5. Runs validation checks.
+6. Copies releases/backups when configured.
+
+---
+
+## Runtime Creation
+
+Runtime files are assembled by:
+
+`scripts/build-runtime.sh`
+
+This creates the installed Helios runtime.
+
+Important:
+
+- `.git/` is intentionally excluded.
+- `.github/` is intentionally excluded.
+- `/opt/helios` on installed systems is not a Git repository.
+
+---
+
+## ISO Testing Workflow
+
+After building:
+
+1. Test the ISO in a VM.
+2. Verify installer.
+3. Verify first boot.
+4. Verify Flex Launcher.
+5. Verify applications.
+6. Test on physical NUC hardware.
+
+VM success is not final validation.
+
+---
+
+## Common Build Problems
+
+### Missing files in ISO
+
+Check:
+
+`scripts/build-runtime.sh`
+
+### Installer problems
+
+Check:
+
+`live-build/config/bootloaders/`
+
+and:
+
+`live-build/config/preseed/`
+
+### Application problems
+
+Check:
+
+- desktop-files/
+- Flex Launcher source
+- installed runtime files
+
+
+---
+
+# Session Log
+
+## 2026-08-02 — Installer, Launcher and First Boot Improvements
+
+### Completed
+
+- Confirmed Helios installer successfully installs the operating system.
+- Fixed custom Syslinux installer menu:
+  - Removed incorrect unresolved kernel placeholders.
+  - Corrected installer paths.
+  - Reduced menu width.
+  - Removed duplicate submenu arrow.
+  - Changed simple install priority from `critical` to `high` so hardware with Wi-Fi can request wireless setup.
+
+### Flex Launcher
+
+Problem:
+Desktop applications launched through Flex Launcher were failing.
+
+Investigation:
+- Flex Launcher was modified to replace direct desktop `Exec=` execution with `gio launch`.
+- This change affected Brave and Update Helios.
+
+Resolution:
+- Restored original direct `Exec=` launching behaviour.
+- Kept additional launcher diagnostics.
+
+Flex Launcher commit:
+`8055e02`
+
+Main repository updated:
+`889963d`
+
+### Spotify
+
+Problem:
+Spotify was not present after installation.
+
+Cause:
+Spotify Flatpak cannot reliably install during the live-build ISO creation process because its extra-data installer requires a normal running system.
+
+Resolution:
+- Added first-boot Spotify installation service.
+- Runs approximately 15 seconds after startup.
+- Requires internet connection.
+- Installs Spotify and updates Flatpak applications.
+- Runs only once.
+
+Files added:
+- `scripts/first-boot-flatpaks.sh`
+- `systemd/helios-first-boot-flatpaks.service`
+- `systemd/helios-first-boot-flatpaks.timer`
+
+### Current Open Issues
+
+OPEN:
+- Verify Brave launches after Flex Launcher rollback.
+- Verify Update Helios launches after Flex Launcher rollback.
+- Verify Spotify first-boot installation.
+- Verify installer menu appearance.
+- Verify Wi-Fi setup on physical NUC hardware.
+- Add dynamic bottom-centre launcher update notification.
+
+---
+
+
+## 2026-08-02 — Update Helios Redesign
+
+### Problem
+
+The Update Helios button did not work reliably.
+
+### Previous Design
+
+The update script attempted to run privileged actions directly:
+
+- sudo install.sh
+- sudo flatpak install
+- sudo flatpak update
+
+This is unsuitable for a TV appliance because the controller interface cannot handle password prompts.
+
+### New Design
+
+Update Helios now uses a controlled system service architecture.
+
+The runtime update mechanism is not yet implemented. The service currently provides the foundation for future Helios runtime updates.
+
+Flow:
+
+Flex Launcher -> helios-update -> systemd service -> helios-update-service (root)
+
+### Changes
+
+Added:
+
+- scripts/helios-update-service.sh
+- systemd/helios-update.service
+- sudoers/helios-update
+
+Updated:
+
+- scripts/update-helios.sh
+- scripts/build-runtime.sh
+- scripts/configure-system.sh
+
+The helios user can only start:
+
+systemctl start helios-update.service
+
+without requiring a password.
+
+### Design Rule
+
+Never return Update Helios to a password-based sudo workflow.
+
+Helios is an appliance-style operating system and updates must work directly from the controller interface.
+
+---
+
+
+---
+
+## 2026-08-02 — Update Architecture Correction
+
+### Discovery
+
+The initial Update Helios service design incorrectly assumed that the installed Helios system contained a Git repository.
+
+### Finding
+
+The installed runtime is created by:
+
+- `scripts/build-runtime.sh`
+
+This intentionally excludes:
+
+- `.git/`
+- `.github/`
+
+Therefore:
+
+`/opt/helios`
+
+is a runtime installation only and is not suitable for `git pull` based updates.
+
+### Correction
+
+Do not implement Update Helios using:
+
+- git pull inside `/opt/helios`
+- a development repository on the installed NUC
+
+Future update system must use a release/runtime update mechanism.
+
+Current temporary behaviour:
+
+- Update Helios launches a privileged service.
+- The service updates Flatpak applications.
+- Full Helios runtime update mechanism is still to be designed.
+- Implement official Helios runtime update mechanism.
+
+### Important Rule
+
+The development repository:
+
+`~/Projects/project-helios`
+
+and installed runtime:
+
+`/opt/helios`
+
+are separate systems and must not be treated as the same thing.
+
+---
+
+
+---
+
+## 2026-08-02 — Flex Launcher Status Overlay
+
+### Added
+
+Flex Launcher now supports an optional status message overlay.
+
+Location:
+
+`~/.config/flex-launcher/status.txt`
+
+If the file exists and contains text, Flex Launcher displays the message at the bottom centre of the screen.
+
+### Implementation
+
+Added to Flex Launcher:
+
+- Status texture support.
+- Status text loading.
+- Bottom-centre rendering.
+- Cleanup handling.
+
+Flex Launcher commit:
+
+`1ea02be`
+
+### Intended Use
+
+The status overlay is intended for Helios notifications such as:
+
+- Helios update available.
+- Application updates available.
+- System status messages.
+
+### Current Limitation
+
+The display system exists, but the Helios update checker that writes status messages is not yet implemented.
+
+---

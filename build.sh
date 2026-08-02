@@ -9,6 +9,7 @@ RELEASES_DIR="$PROJECT_DIR/releases"
 VERSION_FILE="$PROJECT_DIR/config/version"
 
 VERSION="$(<"$VERSION_FILE")"
+DEBIAN_VERSION="$(cat /etc/debian_version)"
 BUILD_DATE=$(date +%Y%m%d-%H%M%S)
 RELEASE_ISO="$RELEASES_DIR/Project-Helios-v${VERSION}-${BUILD_DATE}.iso"
 
@@ -18,6 +19,11 @@ fi
 install -d -m 0755 "$BUILD_DIR"
 
 cp -a "$PROJECT_DIR/live-build" "$LIVE_BUILD_DIR"
+
+SPLASH_FILE="$LIVE_BUILD_DIR/config/bootloaders/grub-pc/splash.svg"
+if [[ -f "$SPLASH_FILE" ]]; then
+    sed -i         -e "s|@HELIOS_VERSION@|$VERSION|g"         -e "s|@DEBIAN_VERSION@|$DEBIAN_VERSION|g"         "$SPLASH_FILE"
+fi
 
 "$PROJECT_DIR/scripts/build-runtime.sh" "$RUNTIME_DIR"
 

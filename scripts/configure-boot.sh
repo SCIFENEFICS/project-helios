@@ -56,7 +56,11 @@ GRUB_DISABLE_RECOVERY=true
 GRUB_CMDLINE_LINUX_DEFAULT="quiet splash loglevel=0 systemd.show_status=false rd.systemd.show_status=false rd.udev.log_level=0 udev.log_level=0 vt.global_cursor_default=0 console=tty3"
 EOF
 
-update-grub
+if command -v update-grub >/dev/null 2>&1; then
+    update-grub
+else
+    echo "update-grub is unavailable in this build environment; configuration will be applied on the installed system."
+fi
 
 echo
 echo "=========================================="

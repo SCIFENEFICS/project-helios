@@ -90,6 +90,7 @@ echo
 echo "Installing Helios maintenance tools..."
 install -m 0755 "$PROJECT_DIR/scripts/escape-close.sh" /usr/local/bin/helios-escape-close
 install -m 0755 "$PROJECT_DIR/scripts/update-helios.sh" /usr/local/bin/helios-update
+install -m 0755 "$PROJECT_DIR/scripts/helios-update-service.sh" /usr/local/bin/helios-update-service
 install -m 0755 "$PROJECT_DIR/scripts/launch-brave.sh" /usr/local/bin/helios-launch-brave
 install -m 0755 "$PROJECT_DIR/scripts/first-boot-flatpaks.sh" /usr/local/bin/helios-first-boot-flatpaks
 

@@ -92,19 +92,20 @@ install -m 0755 "$PROJECT_DIR/scripts/escape-close.sh" /usr/local/bin/helios-esc
 install -m 0755 "$PROJECT_DIR/scripts/update-helios.sh" /usr/local/bin/helios-update
 install -m 0755 "$PROJECT_DIR/scripts/helios-update-service.sh" /usr/local/bin/helios-update-service
 install -m 0755 "$PROJECT_DIR/scripts/launch-brave.sh" /usr/local/bin/helios-launch-brave
-install -m 0755 "$PROJECT_DIR/scripts/first-boot-flatpaks.sh" /usr/local/bin/helios-first-boot-flatpaks
+install -m 0755 "$PROJECT_DIR/scripts/first-boot-setup.sh" /usr/local/bin/helios-first-boot-setup
 
 install -d -m 0755 /etc/systemd/system
-install -m 0644     "$PROJECT_DIR/systemd/helios-first-boot-flatpaks.service"     /etc/systemd/system/helios-first-boot-flatpaks.service
-
-install -m 0644     "$PROJECT_DIR/systemd/helios-first-boot-flatpaks.timer"     /etc/systemd/system/helios-first-boot-flatpaks.timer
 
 install -m 0644     "$PROJECT_DIR/systemd/helios-update.service"     /etc/systemd/system/helios-update.service
 
+install -m 0644     "$PROJECT_DIR/systemd/helios-first-boot-setup.service"     /etc/systemd/system/helios-first-boot-setup.service
+
 install -d -m 0755 /etc/sudoers.d
+
 install -m 0440     "$PROJECT_DIR/sudoers/helios-update"     /etc/sudoers.d/helios-update
 
-systemctl enable helios-first-boot-flatpaks.timer
+install -m 0440     "$PROJECT_DIR/sudoers/helios-first-boot-setup"     /etc/sudoers.d/helios-first-boot-setup
+
 
 install -d -o "$HELIOS_USER" -g "$HELIOS_USER"     "$HELIOS_HOME/.local/bin"
 

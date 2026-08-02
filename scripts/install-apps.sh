@@ -38,11 +38,11 @@ fi
 
 echo "Checking Flathub configuration..."
 
-if ! flatpak remotes --user --columns=name | grep -qx "flathub"; then
+if ! flatpak remotes --system --columns=name | grep -qx "flathub"; then
     echo "Adding Flathub for the current user..."
 
     flatpak remote-add \
-        --user \
+        --system \
         --if-not-exists \
         flathub \
         https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -69,7 +69,7 @@ while IFS='|' read -r APP_ID DISPLAY_NAME; do
     echo "Flatpak ID: $APP_ID"
 
     flatpak install \
-        --user \
+        --system \
         --noninteractive \
         flathub \
         "$APP_ID"

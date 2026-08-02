@@ -55,7 +55,7 @@ for script in \
     configure-flex.sh \
     configure-system.sh \
     escape-close.sh \
-    first-boot-flatpaks.sh \
+    first-boot-setup.sh \
     helios-update-service.sh \
     install-external.sh \
     install-flatpaks-system.sh \

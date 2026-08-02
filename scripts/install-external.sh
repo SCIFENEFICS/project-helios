@@ -28,20 +28,8 @@ if [[ -n "$REAL_USER" && "$REAL_USER" != "root" ]]; then
     REAL_HOME="$(getent passwd "$REAL_USER" | cut -d: -f6)"
 fi
 
-echo "Installing Brave Browser..."
-
-install -d -m 0755 /usr/share/keyrings
-
-curl -fsSLo \
-    /usr/share/keyrings/brave-browser-archive-keyring.gpg \
-    https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-
-curl -fsSLo \
-    /etc/apt/sources.list.d/brave-browser-release.sources \
-    https://brave-browser-apt-release.s3.brave.com/brave-browser.sources
-
-apt-get update
-DEBIAN_FRONTEND=noninteractive apt-get install -y brave-browser
+echo "External applications are installed during first boot."
+echo "Skipping Brave Browser during ISO build."
 
 echo
 echo "Flex Launcher is supplied through live-build/config/packages.chroot."

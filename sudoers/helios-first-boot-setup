@@ -1,0 +1,1 @@
+helios ALL=(root) NOPASSWD: /usr/bin/systemctl start helios-first-boot-setup.service

@@ -176,8 +176,9 @@ Important files:
 `helios-update-service.sh`
 - Privileged update service backend.
 
-`first-boot-flatpaks.sh`
-- First boot Flatpak setup.
+`first-boot-setup.sh`
+- First boot application setup.
+- Installs third-party applications after network availability.
 
 ---
 
@@ -221,8 +222,7 @@ Helios system services and timers.
 
 Important files:
 
-- `helios-first-boot-flatpaks.service`
-- `helios-first-boot-flatpaks.timer`
+- `helios-first-boot-setup.service`
 - `helios-update.service`
 
 ---
@@ -475,6 +475,22 @@ Files added:
 - `systemd/helios-first-boot-flatpaks.service`
 - `systemd/helios-first-boot-flatpaks.timer`
 
+### Migration
+
+The original Spotify-only first boot system was later replaced by a unified first boot application installer.
+
+Replacement:
+- `scripts/first-boot-setup.sh`
+- `systemd/helios-first-boot-setup.service`
+
+The new system installs all third-party applications after first boot when network access is available:
+
+- Brave Browser
+- Plex HTPC
+- Moonlight
+- VacuumTube
+- Spotify
+
 ### Current Open Issues
 
 OPEN:
@@ -639,3 +655,16 @@ The status overlay is intended for Helios notifications such as:
 The display system exists, but the Helios update checker that writes status messages is not yet implemented.
 
 ---
+
+---
+
+## Development Workflow Rule
+
+For Project Helios troubleshooting and development:
+
+- Provide one command at a time.
+- Keep explanations concise.
+- Put the next command/action at the end of the response.
+- Do not place commands in the middle of explanations.
+- Wait for command output before continuing.
+

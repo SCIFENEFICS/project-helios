@@ -1,0 +1,11 @@
+[Unit]
+Description=Project Helios first boot application setup
+After=network-online.target graphical-session.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/helios/.Xauthority
+ExecStart=/usr/local/bin/helios-first-boot-setup
+RemainAfterExit=yes

@@ -100,6 +100,8 @@ install -m 0644     "$PROJECT_DIR/systemd/helios-update.service"     /etc/system
 
 install -m 0644     "$PROJECT_DIR/systemd/helios-first-boot-setup.service"     /etc/systemd/system/helios-first-boot-setup.service
 
+systemctl enable helios-first-boot-setup.service
+
 install -d -m 0755 /etc/sudoers.d
 
 install -m 0440     "$PROJECT_DIR/sudoers/helios-update"     /etc/sudoers.d/helios-update

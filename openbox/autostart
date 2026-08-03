@@ -11,11 +11,6 @@ xset -dpms
 # Start NetworkManager's tray process for maintenance access.
 nm-applet &
 
-# Complete first boot application setup before starting Helios.
-if [ ! -f /var/lib/helios/first-boot-complete ]; then
-    sudo systemctl start helios-first-boot-setup.service
-fi
-
 # Start Flex Launcher.
 # If it crashes, restart it after a short delay.
 while true; do

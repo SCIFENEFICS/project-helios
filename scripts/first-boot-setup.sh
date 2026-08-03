@@ -14,22 +14,8 @@ exec >>"$LOG" 2>&1
 
 APP_LIST="/opt/helios/packages/flatpak.txt"
 
-PROGRESS_PIPE=$(mktemp -u)
-mkfifo "$PROGRESS_PIPE"
-
-zenity --progress     --title="Project Helios First Boot Setup"     --text="Starting setup..."     --pulsate     --no-cancel     < "$PROGRESS_PIPE" &
-
-ZENITY_PID=$!
-
-cleanup() {
-    kill "$ZENITY_PID" 2>/dev/null || true
-    rm -f "$PROGRESS_PIPE"
-}
-
-trap cleanup EXIT
-
 run_message() {
-    echo "$1" > "$PROGRESS_PIPE"
+    echo "$1" >> "$LOG"
 }
 
 run_message "========================================="

@@ -56,7 +56,6 @@ LB_DEBIAN_INSTALLER="live"
 LB_DEBIAN_INSTALLER_DISTRIBUTION="trixie"
 
 # Set debian-installer preseed filename/url
-LB_DEBIAN_INSTALLER_PRESEEDFILE=""
 
 # Toggle use of GUI debian-installer
 LB_DEBIAN_INSTALLER_GUI="true"

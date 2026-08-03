@@ -1,11 +1,14 @@
 [Unit]
 Description=Project Helios first boot application setup
-After=network-online.target graphical-session.target
-Wants=network-online.target
+Wants=network-online.target NetworkManager-wait-online.service
+After=network-online.target NetworkManager-wait-online.service
 
 [Service]
 Type=oneshot
-Environment=DISPLAY=:0
-Environment=XAUTHORITY=/home/helios/.Xauthority
 ExecStart=/usr/local/bin/helios-first-boot-setup
 RemainAfterExit=yes
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

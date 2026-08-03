@@ -6,6 +6,7 @@ After=network-online.target NetworkManager-wait-online.service
 [Service]
 Type=oneshot
 ExecStart=/usr/local/bin/helios-first-boot-setup
+TimeoutStartSec=infinity
 RemainAfterExit=yes
 Restart=on-failure
 RestartSec=30

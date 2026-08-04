@@ -28,7 +28,7 @@ case "$WINDOW_CLASS" in
         ;;
 
     *brave-origin*|*Brave\ Origin*|*Brave*)
-        pkill -TERM -u "$USER" -f '/opt/brave.com/brave-origin/brave-origin' 2>/dev/null || true
+        pkill -TERM -u "$USER" -f '/usr/bin/brave-origin-stable' 2>/dev/null || true
         ;;
 
     *mpv*|*Mpv*)

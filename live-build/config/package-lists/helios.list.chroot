@@ -3,6 +3,7 @@
 # Xorg and window management
 xorg
 xinit
+xterm
 openbox
 lightdm
 feh

@@ -13,6 +13,9 @@ fi
 exec > >(tee -a "$LOG") 2>&1
 
 APP_LIST="/opt/helios/packages/flatpak.txt"
+FLATPAK_COUNT="$(grep -Ev '^[[:space:]]*(#|$)' "$APP_LIST" | wc -l)"
+TOTAL_APPS=$((FLATPAK_COUNT + 1))
+CURRENT_APP=1
 FAILED=0
 
 run_message() {
@@ -25,19 +28,26 @@ run_message "========================================="
 
 run_message "Checking internet connection..."
 
+CONNECTED=0
+
 for attempt in $(seq 1 30); do
-    if curl -fsS --max-time 5 https://flathub.org >/dev/null; then
+    if curl -fsS --max-time 5 https://flathub.org >/dev/null 2>&1; then
+        CONNECTED=1
         break
     fi
+
+    run_message "Waiting for network... ($attempt/30)"
     sleep 5
 done
 
-if ! curl -fsS --max-time 5 https://flathub.org >/dev/null; then
+if [[ "$CONNECTED" -eq 0 ]]; then
     run_message "No internet connection available."
     exit 1
 fi
 
-run_message "Installing Brave Origin..."
+run_message "Internet connection established."
+
+run_message "[$CURRENT_APP/$TOTAL_APPS] Installing Brave Origin..."
 
 BRAVE_FAILED=0
 
@@ -71,7 +81,7 @@ fi
 
 if [[ "$BRAVE_FAILED" -ne 0 ]]; then
     run_message "Brave Origin was not installed."
-    run_message "Helios setup will continue so the main interface remains usable."
+    FAILED=1
 fi
 
 if ! flatpak remote-add \
@@ -90,7 +100,8 @@ while IFS='|' read -r APP_ID DISPLAY_NAME; do
     [[ -z "$APP_ID" ]] && continue
     [[ "$APP_ID" == \#* ]] && continue
 
-    run_message "Installing $DISPLAY_NAME..."
+    CURRENT_APP=$((CURRENT_APP + 1))
+    run_message "[$CURRENT_APP/$TOTAL_APPS] Installing $DISPLAY_NAME..."
 
     if flatpak install \
         --system \
@@ -116,14 +127,6 @@ fi
 if [[ "$FAILED" -ne 0 ]]; then
     run_message "Setup is incomplete. Please restart Helios to retry."
     exit 1
-fi
-
-if [[ "$BRAVE_FAILED" -ne 0 ]]; then
-    run_message "The remaining applications are ready."
-    run_message "Starting Helios without Brave Origin."
-    run_message "Brave installation will be retried on the next startup."
-    sleep 3
-    exit 2
 fi
 
 run_message "Helios first boot setup complete."

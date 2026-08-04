@@ -144,6 +144,15 @@ install -d -m 0755 /usr/share/xsessions
 install -m 0644     "$PROJECT_DIR/sessions/helios.desktop"     /usr/share/xsessions/helios.desktop
 
 echo
+echo "Configuring timezone and network time..."
+
+ln -sfn /usr/share/zoneinfo/Australia/Melbourne /etc/localtime
+printf '%s\n' 'Australia/Melbourne' > /etc/timezone
+
+systemctl enable systemd-timesyncd.service
+timedatectl set-ntp true 2>/dev/null || true
+
+echo
 echo "Enabling graphical startup and LightDM..."
 
 systemctl set-default graphical.target

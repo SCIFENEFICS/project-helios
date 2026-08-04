@@ -39,6 +39,10 @@ mpv
 # Flatpak support
 flatpak
 
+# Time and timezone
+tzdata
+systemd-timesyncd
+
 # System utilities
 curl
 wget

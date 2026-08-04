@@ -90,7 +90,7 @@
       <focus>yes</focus>
     </application>
 
-    <application class="Brave-browser">
+    <application class="brave-origin">
       <decor>yes</decor>
       <maximized>no</maximized>
       <focus>yes</focus>

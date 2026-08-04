@@ -37,11 +37,11 @@ if ! curl -fsS --max-time 5 https://flathub.org >/dev/null; then
     exit 1
 fi
 
-run_message "Installing Brave Browser..."
+run_message "Installing Brave Origin..."
 
 BRAVE_FAILED=0
 
-if ! command -v brave-browser >/dev/null 2>&1; then
+if ! command -v brave-origin >/dev/null 2>&1; then
     install -d -m 0755 /usr/share/keyrings
 
     if ! curl -fsSLo \
@@ -62,15 +62,15 @@ if ! command -v brave-browser >/dev/null 2>&1; then
         if ! apt-get -o DPkg::Lock::Timeout=300 update; then
             run_message "APT update failed while preparing Brave."
             BRAVE_FAILED=1
-        elif ! DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::Lock::Timeout=300 install -y brave-browser; then
-            run_message "Brave Browser installation failed."
+        elif ! DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::Lock::Timeout=300 install -y brave-origin; then
+            run_message "Brave Origin installation failed."
             BRAVE_FAILED=1
         fi
     fi
 fi
 
 if [[ "$BRAVE_FAILED" -ne 0 ]]; then
-    run_message "Brave Browser was not installed."
+    run_message "Brave Origin was not installed."
     run_message "Helios setup will continue so the main interface remains usable."
 fi
 
@@ -120,7 +120,7 @@ fi
 
 if [[ "$BRAVE_FAILED" -ne 0 ]]; then
     run_message "The remaining applications are ready."
-    run_message "Starting Helios without Brave Browser."
+    run_message "Starting Helios without Brave Origin."
     run_message "Brave installation will be retried on the next startup."
     sleep 3
     exit 2

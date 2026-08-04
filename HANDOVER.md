@@ -8,14 +8,14 @@
 
 ## Document status
 
-- Document version: 1.0
+- Document version: 1.1
 - Created: 2026-08-02 15:30 AEST
-- Last updated: 2026-08-02 15:30 AEST
+- Last updated: 2026-08-04 17:45 AEST
 - Current Helios version: 0.5.0
 - Debian base: Debian GNU/Linux 13.6 "Trixie"
 - Canonical repository: `~/Projects/project-helios`
 - Current phase: Make the ISO install, boot, and run all core applications reliably.
-- Immediate task: Finish this handover, review and commit the latest installer fixes, rebuild the ISO, inspect its generated files, and test `Install Helios`.
+- Immediate task: Commit and push the remaining Helios changes, rebuild the ISO, verify installer behaviour, then test on the ISO VM and MSI Cubi NUC.
 
 ---
 
@@ -667,4 +667,43 @@ For Project Helios troubleshooting and development:
 - Put the next command/action at the end of the response.
 - Do not place commands in the middle of explanations.
 - Wait for command output before continuing.
+
+
+---
+
+## 2026-08-04 — Installer, Flex Launcher and System Improvements
+
+### Completed
+
+- Updated installer boot parameters to use unattended installation:
+  - `auto=true`
+  - `priority=critical`
+- Improved GRUB installer menu alignment.
+- Added automatic timezone configuration.
+- Added automatic NTP (network time) configuration.
+- Switched Helios from Brave Browser to Brave Origin.
+- VacuumTube now replaces the previous YouTube web application.
+- Rebuilt and installed the latest Flex Launcher binary.
+- Updated the Flex Launcher submodule to commit:
+  - `6099559`
+- Pushed the Flex Launcher `helios` branch to GitHub.
+
+### Flex Launcher
+
+Navigation behaviour was improved for multi-row layouts.
+
+Wrap navigation now works from both the top-left and bottom-left launcher entries instead of only the first entry.
+
+This keeps left/right wrapping behaviour consistent across both launcher rows.
+
+### Remaining Known Issues
+
+The following items still require verification on the installed ISO and physical NUC:
+
+- Verify Brave Origin installs and launches correctly in the next ISO.
+- Spotify installed and launched successfully in the previous ISO; verify it remains working.
+- Update Helios launcher still does not work and requires further development.
+- Verify controller navigation across all launcher pages.
+- Improve first-boot user feedback (spinner, progress indicator or package progress).
+- Rebuild and fully test the latest ISO.
 

@@ -33,14 +33,16 @@ Project Helios is progressing toward its first public release.
 - Native launcher background support
 - Custom Project Helios boot screen
 - Hidden GRUB boot menu
-- One-click update system
 - Flatpak application support
 
 ### In Progress
 
 - Boot time optimisation
-- Controller compatibility testing
-- Installer menu and hardware testing
+- Controller navigation and compatibility testing
+- Installer language, menu and hardware testing
+- Timezone and network-time validation
+- First-boot setup presentation and progress feedback
+- Complete and verify the controller-friendly update system
 - Settings interface
 - Hardware testing on the MSI Cubi N 8GL
 
@@ -64,27 +66,29 @@ Project Helios is progressing toward its first public release.
 - YouTube (VacuumTube)
 - Spotify
 - MPV
-- Brave Browser
+- Brave Origin
 - Files
 - Helios Update
 
 > [!NOTE]
-> **Spotify requires an internet connection during first boot.**
+> **An internet connection is required during first boot.**
 >
-> Spotify is installed automatically after Helios starts for the first time. If Helios is not connected to the internet, Spotify will be installed automatically the next time it boots with an internet connection.
+> Helios installs Brave Origin and its Flatpak media applications after the installed system starts for the first time. If setup cannot complete, Helios retries it on a later startup.
 
 ## First Boot
 
-When Helios starts for the first time it automatically performs a small amount of setup in the background.
+When Helios starts for the first time, it automatically prepares the included online applications.
 
 This currently includes:
 
+- Installing Brave Origin
+- Installing Moonlight
+- Installing Plex HTPC
+- Installing VacuumTube
 - Installing Spotify
 - Updating installed Flatpak applications
 
-This process starts approximately 15 seconds after boot and only runs once.
-
-A working internet connection is required for this process.
+A working internet connection is required. Setup completes once and is retried on a later startup if it cannot finish.
 
 ## System Architecture
 
@@ -152,7 +156,7 @@ Project Helios is built using open-source software, including:
 - SDL2
 - MPV
 - Moonlight
-- Brave
+- Brave Origin
 - VacuumTube
 
 ## License

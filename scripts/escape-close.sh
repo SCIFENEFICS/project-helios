@@ -27,8 +27,8 @@ case "$WINDOW_CLASS" in
         flatpak kill rocks.shy.VacuumTube 2>/dev/null || true
         ;;
 
-    *Brave-browser*|*brave-browser*|*Brave*)
-        pkill -TERM -u "$USER" -f '/opt/brave.com/brave/brave' 2>/dev/null || true
+    *brave-origin*|*Brave\ Origin*|*Brave*)
+        pkill -TERM -u "$USER" -f '/opt/brave.com/brave-origin/brave-origin' 2>/dev/null || true
         ;;
 
     *mpv*|*Mpv*)

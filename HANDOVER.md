@@ -677,7 +677,7 @@ For Project Helios troubleshooting and development:
 
 - Updated installer boot parameters to use unattended installation:
   - `auto=true`
-  - `priority=critical`
+  - `priority=high`
 - Improved GRUB installer menu alignment.
 - Added automatic timezone configuration.
 - Added automatic NTP (network time) configuration.
@@ -707,3 +707,68 @@ The following items still require verification on the installed ISO and physical
 - Improve first-boot user feedback (spinner, progress indicator or package progress).
 - Rebuild and fully test the latest ISO.
 
+---
+
+## 2026-08-04 — Debian Installer Wi-Fi Passphrase Bug and Confirmed Workaround
+
+### Confirmed problem
+
+Quick Install was previously configured with:
+
+- `auto=true`
+- `priority=critical`
+
+This successfully hid the language, country, keyboard and timezone questions, but it caused Debian Installer wireless setup to fail.
+
+Observed behaviour:
+
+- The installer detected the wireless network.
+- It did not display a Wi-Fi passphrase entry field.
+- It immediately displayed `Invalid passphrase`.
+- Pressing Continue returned to the same error screen.
+- Installation could not proceed.
+
+This was not an incorrect Wi-Fi password. The required passphrase question had been suppressed, leaving Debian Installer to validate an empty value.
+
+### Confirmed working workaround
+
+Quick Install must use:
+
+- `auto=true`
+- `priority=high`
+
+The preseed remains loaded through:
+
+`file=/cdrom/install/preseed.cfg`
+
+Tested result:
+
+- Language selection did not appear.
+- Country selection did not appear.
+- Keyboard selection did not appear.
+- Wi-Fi network selection worked.
+- Wi-Fi passphrase entry appeared.
+- The passphrase was accepted.
+- Installation was able to continue.
+
+### Do-not-regress rule
+
+Do not change Quick Install back to:
+
+`auto=true priority=critical`
+
+That combination causes the Wi-Fi passphrase loop.
+
+Keep this tested combination in both boot paths:
+
+- `live-build/config/bootloaders/grub-pc/install_start_gui.cfg`
+- `live-build/config/bootloaders/syslinux_common/menu.cfg`
+
+Required Quick Install parameters:
+
+`auto=true priority=high`
+
+If installer automation is changed later, always verify:
+
+1. Language, country and keyboard questions remain skipped.
+2. Wi-Fi passphrase entry remains visible and usable.

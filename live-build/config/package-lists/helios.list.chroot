@@ -9,6 +9,8 @@ feh
 x11-xserver-utils
 dbus-x11
 
+fonts-liberation
+
 # Graphics and Intel hardware decoding
 intel-media-va-driver
 vainfo
@@ -37,6 +39,10 @@ mpv
 
 # Flatpak support
 flatpak
+
+# Time and timezone
+tzdata
+systemd-timesyncd
 
 # System utilities
 curl

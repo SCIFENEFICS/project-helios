@@ -70,8 +70,8 @@ if ! command -v brave-browser >/dev/null 2>&1; then
 fi
 
 if [[ "$BRAVE_FAILED" -ne 0 ]]; then
-    run_message "Brave was not installed, but Flatpak application setup will continue."
-    FAILED=1
+    run_message "Brave Browser was not installed."
+    run_message "Helios setup will continue so the main interface remains usable."
 fi
 
 if ! flatpak remote-add \
@@ -116,6 +116,14 @@ fi
 if [[ "$FAILED" -ne 0 ]]; then
     run_message "Setup is incomplete. Please restart Helios to retry."
     exit 1
+fi
+
+if [[ "$BRAVE_FAILED" -ne 0 ]]; then
+    run_message "The remaining applications are ready."
+    run_message "Starting Helios without Brave Browser."
+    run_message "Brave installation will be retried on the next startup."
+    sleep 3
+    exit 2
 fi
 
 run_message "Helios first boot setup complete."

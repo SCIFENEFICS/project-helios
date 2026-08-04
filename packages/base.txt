@@ -10,6 +10,7 @@ feh
 x11-xserver-utils
 dbus-x11
 
+fonts-liberation
 # Graphics and Intel hardware decoding
 intel-media-va-driver
 vainfo

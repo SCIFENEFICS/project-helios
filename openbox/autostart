@@ -15,8 +15,10 @@ nm-applet &
 if [ ! -f /var/lib/helios/first-boot-complete ]; then
     xterm         -fullscreen         -fa Monospace         -fs 18         -title "Project Helios First-Time Setup"         -e sudo /usr/local/bin/helios-first-boot-setup
 
-    if [ ! -f /var/lib/helios/first-boot-complete ]; then
-        xterm             -fullscreen             -fa Monospace             -fs 18             -title "Project Helios Setup Incomplete"             -e sh -c 'echo; echo "Project Helios setup did not complete."; echo; echo "Please check the internet connection and restart Helios."; echo; echo "Press Enter to close."; read answer'
+    SETUP_EXIT=$?
+
+    if [ "$SETUP_EXIT" -ne 0 ] && [ "$SETUP_EXIT" -ne 2 ]; then
+        xterm             -fullscreen             -fa Monospace             -fs 18             -title "Project Helios Setup Incomplete"             -e sh -c 'clear; echo; echo "Project Helios setup did not complete."; echo; echo "Check the internet connection, then restart Helios."; echo; sleep 15'
         exit 1
     fi
 fi

@@ -28,7 +28,12 @@ case "$WINDOW_CLASS" in
         ;;
 
     *brave-origin*|*Brave\ Origin*|*Brave*)
-        pkill -TERM -u "$USER" -f '/usr/bin/brave-origin-stable' 2>/dev/null || true
+        xdotool windowclose "$ACTIVE_WINDOW" 2>/dev/null || true
+        sleep 2
+
+        if xdotool getwindowname "$ACTIVE_WINDOW" >/dev/null 2>&1; then
+            pkill -TERM -u "$USER" -f '/opt/brave.com/brave-origin/brave-origin' 2>/dev/null || true
+        fi
         ;;
 
     *mpv*|*Mpv*)

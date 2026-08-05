@@ -4,8 +4,8 @@ message-font: "Unifont Regular 16"
 terminal-font: "Unifont Regular 16"
 
 + boot_menu {
-    left = 25%
-    width = 50%
+    left = 50%-150
+    width = 300
     top = 54%
     height = 100
     item_color = "#aeb6c2"
@@ -13,7 +13,7 @@ terminal-font: "Unifont Regular 16"
     selected_item_color = "#ffffff"
     selected_item_font = "Unifont Regular 18"
     item_height = 28
-    item_padding = 8
+    item_padding = 0
     item_spacing = 8
     icon_width = 0
     icon_height = 0
